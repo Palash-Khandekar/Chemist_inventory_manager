@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chemist Inventory Manager</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <section id="loginScreen" class="auth-screen active">
+        <div class="auth-card">
+          <div class="brand-block">
+            <div class="brand-icon">💊</div>
+            <h1>Chemist Inventory</h1>
+            <p>Secure medicine management dashboard</p>
+          </div>
+
+          <form id="loginForm" class="auth-form">
+            <label>
+              <span>Username</span>
+              <input type="text" id="username" value="admin" required />
+            </label>
+
+            <label>
+              <span>Password</span>
+              <input type="password" id="password" value="admin123" required />
+            </label>
+
+            <button type="submit" class="primary-btn">Login</button>
+          </form>
+        </div>
+      </section>
+
+      <section id="appScreen" class="app-screen hidden">
+        <aside class="sidebar">
+          <div class="brand-row">
+            <div class="brand-icon small">💊</div>
+            <div>
+              <h2>Chemist</h2>
+              <small>Inventory Hub</small>
+            </div>
+          </div>
+
+          <nav class="sidebar-nav">
+            <button class="nav-item active">Dashboard</button>
+          </nav>
+
+          <div class="sidebar-card">
+            <p>Stock health</p>
+            <strong id="stockSummary">0 Items</strong>
+          </div>
+        </aside>
+
+        <main class="main-content">
+          <header class="topbar">
+            <div>
+              <p class="eyebrow">Overview</p>
+              <h3>Medicine Inventory</h3>
+            </div>
+            <button id="logoutBtn" class="secondary-btn">Logout</button>
+          </header>
+
+          <section class="stats-grid">
+            <div class="stat-card">
+              <span>Total</span>
+              <strong id="totalMedicines">0</strong>
+            </div>
+            <div class="stat-card success">
+              <span>Active</span>
+              <strong id="activeMedicines">0</strong>
+            </div>
+            <div class="stat-card warning">
+              <span>Expiring soon</span>
+              <strong id="expiringMedicines">0</strong>
+            </div>
+            <div class="stat-card danger">
+              <span>Expired</span>
+              <strong id="expiredMedicines">0</strong>
+            </div>
+          </section>
+
+          <section class="toolbar">
+            <div class="search-box">
+              <input type="search" id="searchInput" placeholder="Search by medicine name..." />
+            </div>
+            <button id="addMedicineBtn" class="primary-btn">+ Add medicine</button>
+          </section>
+
+          <section class="table-panel">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Company</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                    <th>Expiry</th>
+                    <th>Updated On</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="medicineTableBody"></tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+      </section>
+    </div>
+
+    <div id="medicineModal" class="modal hidden" aria-modal="true">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3 id="modalTitle">Add Medicine</h3>
+          <button type="button" id="closeModalBtn" class="icon-btn" aria-label="Close">×</button>
+        </div>
+
+        <form id="medicineForm">
+          <input type="hidden" id="medicineId" />
+
+          <div class="form-grid">
+            <label>
+              <span>Name</span>
+              <input type="text" id="medicineName" required />
+            </label>
+
+            <label>
+              <span>Category</span>
+              <input type="text" id="medicineCategory" required />
+            </label>
+
+            <label>
+              <span>Company</span>
+              <input type="text" id="medicineCompany" required />
+            </label>
+
+            <label>
+              <span>Price</span>
+              <input type="text" id="medicinePrice" required />
+            </label>
+
+            <label>
+              <span>Quantity</span>
+              <input type="text" id="medicineQuantity" required />
+            </label>
+
+            <label>
+              <span>Expiry Date</span>
+              <input type="datetime-local" id="medicineExpiry" />
+            </label>
+
+            <label class="full-width">
+              <span>Description</span>
+              <textarea id="medicineDescription" rows="3" required></textarea>
+            </label>
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" class="secondary-btn" id="cancelBtn">Cancel</button>
+            <button type="submit" class="primary-btn">Save medicine</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
